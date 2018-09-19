@@ -1,0 +1,13 @@
+CREATE SCHEMA app_produtos;
+
+USE app_produtos;
+
+CREATE TABLE produtos(
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    preco FLOAT UNSIGNED NOT NULL,
+    PRIMARY KEY (id)
+)
+
+INSERT INTO produto (nome, preco) VALUES ("livro",30.20)
+INSERT INTO produto (nome, preco) VALUES ("caderno",10.70)
