@@ -1,60 +1,62 @@
-var random;
+var r;
 var palpite = document.getElementById("tentativa").value;
 var tentativas = 0;
 var maxtentativas = 10;
 var palpites = [];
 var regra = /^[0-9]+$/;
 
-function iniciajogo(){
+random();
+
+function iniciajogo() {
     palpite = document.getElementById("tentativa").value;
-    if(!palpite){
+    if (!palpite) {
         alert("Você não digitou a sua tentativa");
     }
-        else if(palpite < 1 || palpite > 100){
+    else if (palpite < 1 || palpite > 100) {
         alert("O número digitado está fora dos limites.");
-     } 
-        else if(!palpite.match(regra)){
-            alert("Valor incorreto digitado");
-        }
-         else{
-          random();
-          adivinha();
+    }
+    else if (!palpite.match(regra)) {
+        alert("Valor incorreto digitado");
+    }
+    else {
+
+        adivinha();
     }
 }
 
-function random(){
-    random = Math.floor((Math.random() * 100) +1);
-    console.log(random);
+function random() {
+    r = Math.floor((Math.random() * 100) + 1);
+    console.log(r);
 }
 
-function adivinha(){
+function adivinha() {
     console.log(palpite);
 
-    if(random == palpite){        
-        function acertou() {
-            alert("O seu palpite está correto! Você acertou em: " + tentativas);
-        }
-    } else if(palpite < random){
+    if (r == palpite) {
+
+        alert("O seu palpite está correto! Você acertou em: " + tentativas + " tentativas.");
+
+    } else if (palpite < r) {
         palpites.push(palpite);
-        alert("O seu palpite é muito baixo\n" + "Suas tentativas anteriores: "+ JSON.stringify(palpites));
-    
+        alert("O seu palpite é muito baixo\n" + "Suas tentativas anteriores: " + JSON.stringify(palpites));
+
         tentativas++;
-        if(tentativas >= maxtentativas){
+        if (tentativas >= maxtentativas) {
             var con;
             con = confirm("Você excedeu o número de tentativas. Deseja tentar novamente?");
-            if(con == true){
+            if (con == true) {
                 tentativas = 0;
             }
         }
-    }else{
+    } else {
         palpites.push(palpite);
-        alert("O seu palpite é muito alto\n" + "Suas tentativas anteriores: "+ JSON.stringify(palpites));
-    
+        alert("O seu palpite é muito alto\n" + "Suas tentativas anteriores: " + JSON.stringify(palpites));
+
         tentativas++;
-        if(tentativas >= maxtentativas){
+        if (tentativas >= maxtentativas) {
             var con;
             con = confirm("Você excedeu o número de tentativas. Deseja tentar novamente?");
-            if(con == true){
+            if (con == true) {
                 tentativas = 0;
             }
         }

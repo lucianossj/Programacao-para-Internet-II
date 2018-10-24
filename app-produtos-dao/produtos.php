@@ -56,8 +56,6 @@
 				$data = file_get_contents("php://input");
 				$var = json_decode($data);
 				$produto = new Produto($id, $var->nome, $var->preco);
-
-				$dao= new ProdutoDAO;
 				$dao->atualizar($produto);
 				
 				$produto_json = json_encode($produto);
@@ -65,6 +63,7 @@
 				echo($produto_json);				
 			}
 			break;
+			
 		case 'DELETE':
 			if(!empty($_GET["id"]))
 			{
